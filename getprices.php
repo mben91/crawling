@@ -23,7 +23,7 @@
         $handle = curl_init();
         
 		$proxy = '54.187.225.70:8083';
-		curl_setopt($handle, CURLOPT_PROXY, $proxy);
+		//curl_setopt($handle, CURLOPT_PROXY, $proxy);
 		
         curl_setopt($handle, CURLOPT_URL, $baseurl . $uri);
         curl_setopt($handle, CURLOPT_HTTPHEADER, $headers);

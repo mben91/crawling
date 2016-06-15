@@ -21,7 +21,7 @@
 	if($test['code'] != '200') die('not found');
 	
 	$category = json_decode($test['result'], true);
-	print_r($category);die;
+
 	$blocks  =  array_keys($category['blocks']);
 	
 	$data = array();
@@ -259,7 +259,7 @@
         $handle = curl_init();
 		
 		$proxy = '54.187.225.70:8083';
-		curl_setopt($handle, CURLOPT_PROXY, $proxy);
+		//curl_setopt($handle, CURLOPT_PROXY, $proxy);
         
         curl_setopt($handle, CURLOPT_URL, $baseurl . $uri);
         curl_setopt($handle, CURLOPT_HTTPHEADER, $headers);
