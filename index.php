@@ -59,11 +59,19 @@
 	$(document).ready(function() {
 		
 		var finalfields = <?php echo json_encode($finalfields) ?>;
+		console.log(finalfields);
 		$.each(finalfields, function(ff, finalfield) {
 		
-			if( ff < 10000 )
+			<?php if(isset($_GET['min']) && !empty($_GET['min']) && is_numeric($_GET['min'])) : ?>
+			if( ff < <?php echo $_GET['min'] ?> )
 			return true; 
-		
+			<?php endif; ?>
+			
+			<?php if(isset($_GET['max']) && !empty($_GET['max']) && is_numeric($_GET['max'])) : ?>
+			if( ff >= <?php echo $_GET['max'] ?> )
+			return true; 
+			<?php endif; ?>
+			
 			var prices;
 			var fields;
 			var deps;
