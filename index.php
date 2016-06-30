@@ -21,7 +21,7 @@
 	if($test['code'] != '200') die('not found');
 	
 	$category = json_decode($test['result'], true);
-
+	
 	$blocks  =  array_keys($category['blocks']);
 	
 	$data = array();
@@ -41,7 +41,8 @@
 		}
 		$finalfields[] = $row;
 	}
-	
+	//print_r($finalfields);die;
+		
 	$count = 1;
 	$pricetable = array(); 
 	
@@ -84,13 +85,11 @@
 				data: { field : JSON.stringify( finalfield ) },
 				async: false,
 				success: function(resp) {
-					if(resp == 'notfound') {
+					if(resp == 'notfound' || resp.indexOf('notfound') != -1) {
 						notcompatiblecount++;
 						$('#notcompatible').text(notcompatiblecount);
 						return false;
 					} else {
-						//console.log((compatiblecount+1) + ' occurence found!');
-						//console.log('----------------------------------');
 						compatiblefields.push(finalfield);
 						compatiblecount++;
 					}
@@ -114,7 +113,10 @@
 							if(f.replace('bricks[', '').replace(']', '') == d && f != 'categoryId') {
 								$.each(dep.bricks, function(a, b) {
 									if(a == field) {
+										if(typeof dep.messages.description !== 'undefined')
 										specs[dep.messages.description.value] = b.messages.description.value;
+										else 
+										specs[dep.messages.title.value] = b.messages.description.value;
 									}						
 								});	
 							}
@@ -165,10 +167,6 @@
 				}
 					
 			});
-			
-			//if(ff == 19)
-			//return false;
-		
 		});
 	});		
 				
@@ -238,7 +236,7 @@
 	    return $arr[0];
 	  } else {
 	    $result = array();
-	    $allCasesOfRest = allPossibleCases(array_slice($arr, 1));  // recur with the rest of array
+	    $allCasesOfRest = allPossibleCases(array_slice($arr, 1));
 	    for ($i = 0; $i < count($allCasesOfRest); $i++) {
 	    	
 	      for ($j = 0; $j < count($arr[0]); $j++) {
@@ -258,7 +256,7 @@
         
         $handle = curl_init();
 		
-		$proxy = '54.187.225.70:8083';
+		$proxy = '66.76.178.125:8080';
 		//curl_setopt($handle, CURLOPT_PROXY, $proxy);
         
         curl_setopt($handle, CURLOPT_URL, $baseurl . $uri);
