@@ -204,8 +204,17 @@
 								first = 1;
 							} else {
 								var pp = elem.split(" ");
-								var p1 = (typeof pp[1] !== 'undefined' ? pp[1] : '' );
-								var p2 = (typeof pp[5] !== 'undefined' ? pp[5] : '' );;
+								if(pp[2] == '€') {
+									var p1 = (typeof pp[3] !== 'undefined' ? pp[3] : '' );	
+								} else {
+									var p1 = (typeof pp[1] !== 'undefined' ? pp[1] : '' );
+								}
+								
+								if(pp[2] == '€') {
+									var p2 = (typeof pp[7] !== 'undefined' ? pp[7] : '' ); 
+								} else {
+									var p2 = (typeof pp[5] !== 'undefined' ? pp[5] : '' );	
+								}
 								
 								prices += p1 + ';' + p2 + ';';
 							}
