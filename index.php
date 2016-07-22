@@ -32,22 +32,27 @@
 	$possibilities = allPossibleCases($data);
 	
 	$finalfields = array();
+	
 	foreach ($possibilities as $p => $possibility) {
+		
+		if($p <= 90000 || $p > 120000)
+		continue;
+		
 		$val = explode('|', $possibility);
 		$row = array();
 		$row['categoryId'] = $fields['categoryId'];
+		
 		foreach ($val as $c => $cc) {
-			 $row['bricks[' .$blocks[$c]. ']'] = $cc;
+			if(isset($blocks[$c]) && !empty($blocks[$c]))
+			$row['bricks[' .$blocks[$c]. ']'] = $cc;
 		}
 		$finalfields[] = $row;
+
 	}
-	//print_r($finalfields);die;
-		
-	$count = 1;
-	$pricetable = array(); 
-	
+
+	$pricetable = array();
 	?>
-	
+	 
 	<script>
 	var alldata = {};
 	var compatiblecount = 0;
