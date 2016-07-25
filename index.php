@@ -35,7 +35,7 @@
 	
 	foreach ($possibilities as $p => $possibility) {
 		
-		if($p <= 90000 || $p > 120000)
+		if($p <= 110000 || $p > 150000)
 		continue;
 		
 		$val = explode('|', $possibility);
